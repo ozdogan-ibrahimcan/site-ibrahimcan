@@ -5,8 +5,8 @@ import HeaderLink from './HeaderLink.astro';
 const LINKEDIN_URL = "https://www.linkedin.com/in/ibrahimcanozdogan/";
 const GITHUB_URL = "https://github.com/ozdogan-ibrahimcan";
 const EMAIL = "mailto:ozdoganic@gmail.com";
+const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
 ---
-
 <header>
   <nav>
     <h2><a href="/">{SITE_TITLE}</a></h2>
@@ -16,8 +16,6 @@ const EMAIL = "mailto:ozdoganic@gmail.com";
       <HeaderLink href="/projects">Projects</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
-      <HeaderLink href="/contact">Contact</HeaderLink>
-      <HeaderLink href="/ibrahimcan_ozdogan_CV.pdf" target="_blank" rel="noopener">CV</HeaderLink>
     </div>
 
     <div class="social-links">
@@ -38,6 +36,12 @@ const EMAIL = "mailto:ozdoganic@gmail.com";
           <path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/>
         </svg>
       </a>
+
+      <!-- CV: always open in new tab -->
+      <a class="cv-btn" href={CV_URL} target="_blank" rel="noreferrer" aria-label="Open CV" title="Open CV">
+        CV
+      </a>
+
     </div>
   </nav>
 </header>
@@ -50,17 +54,8 @@ const EMAIL = "mailto:ozdoganic@gmail.com";
     box-shadow: 0 2px 8px rgba(var(--black), 5%);
   }
 
-  h2 {
-    margin: 0;
-    font-size: 1em;
-    white-space: nowrap;
-  }
-
-  h2 a,
-  h2 a.active {
-    text-decoration: none;
-    color: var(--black);
-  }
+  h2 { margin: 0; font-size: 1em; white-space: nowrap; }
+  h2 a { text-decoration: none; color: var(--black); }
 
   nav {
     display: flex;
@@ -83,9 +78,7 @@ const EMAIL = "mailto:ozdoganic@gmail.com";
     text-decoration: none;
   }
 
-  nav a.active {
-    border-bottom-color: var(--accent);
-  }
+  nav a.active { border-bottom-color: var(--accent); }
 
   .social-links {
     display: flex;
@@ -93,7 +86,6 @@ const EMAIL = "mailto:ozdoganic@gmail.com";
     gap: 12px;
   }
 
-  /* PNG gibi: border yok, arkaplan yok, sadece ikon */
   .icon-btn {
     padding: 6px;
     border: none;
@@ -114,19 +106,31 @@ const EMAIL = "mailto:ozdoganic@gmail.com";
     background: rgba(0, 0, 0, 0.04);
   }
 
-  .icon-btn:active {
-    transform: translateY(0px);
-  }
-
   .icon-btn svg {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
     display: block;
   }
 
+  .cv-btn {
+    padding: 8px 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1;
+    opacity: 0.9;
+    transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
+  }
+
+  .cv-btn:hover {
+    opacity: 1;
+    transform: translateY(-1px);
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.18);
+  }
+
   @media (max-width: 900px) {
-    .social-links {
-      display: none;
-    }
+    .social-links { display: none; }
   }
 </style>

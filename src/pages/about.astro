@@ -1,72 +1,114 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About Me"
-	description="Automation Software Engineer specializing in IIoT solutions"
-	pubDate={new Date('March 3 2026')}
-	heroImage={AboutHeroImage}
->
-	<h2>Professional Summary</h2>
-	<p><a href="/ibrahimcan_ozdogan_CV.pdf" target="_blank" style="text-decoration:underline;">Download My CV</a></p>
-	<div class="cv-preview">
-		<iframe src="/ibrahimcan_ozdogan_CV.pdf" width="100%" height="500" title="CV preview"></iframe>
-	</div>
-	<p>
-		I'm an Automation Software & IIoT Engineer with a passion for designing intelligent systems that bridge 
-		the physical and digital worlds. With expertise in industrial IoT platforms, real-time software, and 
-		embedded systems, I develop scalable solutions that drive operational efficiency and innovation.
-	</p>
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} | About`} description="Background, education, and professional experience." />
+  </head>
 
-	<h2>Areas of Expertise</h2>
-	<ul>
-		<li><strong>Industrial IoT (IIoT)</strong> - Edge computing, sensor integration, data acquisition</li>
-		<li><strong>Automation Software</strong> - Control systems, real-time processing, protocol implementations</li>
-		<li><strong>Embedded Systems</strong> - Microcontroller programming, firmware development</li>
-		<li><strong>Full Stack Development</strong> - Web dashboards, mobile apps, backend services</li>
-		<li><strong>System Architecture</strong> - Scalable infrastructure, cloud integration, edge-cloud hybrid solutions</li>
-	</ul>
+  <body>
+    <Header />
 
-	<h2>Technical Skills</h2>
-	<p>
-		<strong>Programming Languages:</strong> C, C++, Python, JavaScript, TypeScript, Java<br/>
-		<strong>Platforms & Tools:</strong> Arduino, STM32, Raspberry Pi, Edge Impulse, Node-RED<br/>
-		<strong>IoT Protocols:</strong> MQTT, CoAP, OPC UA, Modbus, CAN bus<br/>
-		<strong>Cloud & Databases:</strong> AWS IoT Core, Azure, Firebase, PostgreSQL, MongoDB<br/>
-		<strong>Development Tools:</strong> Git, Docker, Kubernetes, VS Code, PlatformIO
-	</p>
+    <main class="container">
+      <header class="top">
+        <h1>About</h1>
+        <p class="lead">
+          Automation Software & IIoT Engineer focused on industrial digitalization — building reliable data
+          systems from PLC/SCADA to MES and higher-level platforms.
+        </p>
+      </header>
 
-	<h2>Education</h2>
-	<p>
-		I hold a degree in Software Engineering with focus on embedded systems and industrial automation. 
-		Continuously updating my skills through certifications and hands-on projects in emerging IoT technologies.
-	</p>
+      <section class="section">
+        <h2>Professional Experience</h2>
 
-	<h2>What Drives Me</h2>
-	<p>
-		I believe in the power of connected systems to solve real-world challenges. Whether it's optimizing 
-		manufacturing processes, improving predictive maintenance, or enabling smart infrastructure, I'm committed 
-		to building solutions that make a tangible impact. I document my journey through technical blogs, 
-		open-source contributions, and detailed project case studies.
-	</p>
+        <div class="card">
+          <h3>Siemens Turkey — Automation Software & IoT Engineer</h3>
+          <p class="meta">Jul 2022 – Present</p>
+          <ul>
+            <li>Designed and delivered production data integration systems between PLCs, SCADA platforms, and MES environments.</li>
+            <li>Developed Node-RED architectures, SQL-based data layers, and backend logic for scalable real-time communication.</li>
+            <li>Built control APIs and automation workflows in complex robotic welding environments.</li>
+            <li>Implemented predictive maintenance systems using Grafana dashboards, Node-RED flows, and Linux-based IoT gateways.</li>
+          </ul>
+        </div>
 
-	<h2>Beyond Code</h2>
-	<p>
-		When I'm not working on automation projects, you'll find me exploring new IoT frameworks, 
-		contributing to open-source communities, or sharing knowledge through technical writing and mentoring.
-	</p>
+        <div class="card">
+          <h3>Akerasoft — Embedded Systems Intern</h3>
+          <p class="meta">Oct 2021 – Apr 2022</p>
+          <ul>
+            <li>Worked on microcontroller-based firmware and hardware development (Embedded C/C++).</li>
+            <li>Assisted with schematic design and PCB layout using KiCad; supported device-level debugging and documentation.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Education</h2>
+
+        <div class="card">
+          <h3>Istanbul Technical University — M.Sc., Computer Engineering</h3>
+          <p class="meta">Sep 2024 – Present</p>
+          <p class="muted">
+            Interests: IoT architectures, smart manufacturing systems, industrial automation software, edge computing.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Istanbul Technical University — B.Sc., Electrical Engineering</h3>
+          <p class="meta">Sep 2018 – Jun 2023</p>
+          <p class="muted">
+            Graduated top of class (GPA 3.81/4.00). Focused on power electronics, embedded systems, PLC/SCADA technologies,
+            and industrial automation.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Core Skills</h2>
+        <div class="skills">
+          <span class="pill">TIA Portal (S7-1500)</span>
+          <span class="pill">SCL</span>
+          <span class="pill">WinCC</span>
+          <span class="pill">OPC UA</span>
+          <span class="pill">PROFINET</span>
+          <span class="pill">Node-RED</span>
+          <span class="pill">MQTT</span>
+          <span class="pill">Python</span>
+          <span class="pill">SQL</span>
+          <span class="pill">Linux</span>
+          <span class="pill">Docker</span>
+          <span class="pill">Git</span>
+        </div>
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
 
 <style>
-	.cv-preview {
-		margin: 24px 0;
-		border: 1px solid rgba(0,0,0,0.1);
-		border-radius: 8px;
-		overflow: hidden;
-	}
-	.cv-preview iframe {
-		border: none;
-	}
+  .container { max-width: 960px; margin: 0 auto; padding: 32px 16px 72px; }
+  .top { margin-bottom: 18px; }
+  .lead { margin: 10px 0 0; opacity: .85; max-width: 70ch; }
+
+  .section { margin-top: 28px; }
+  .card {
+    border: 1px solid rgba(0,0,0,.10);
+    border-radius: 16px;
+    padding: 16px;
+    margin-top: 12px;
+    background: rgba(0,0,0,.02);
+  }
+  .meta { margin: 6px 0 10px; opacity: .75; font-size: .95rem; }
+  .muted { opacity: .85; margin: 0; }
+
+  ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .pill { font-size: .92rem; padding: 6px 10px; border: 1px solid rgba(0,0,0,.10); border-radius: 999px; opacity: .92; }
 </style>
-</Layout>

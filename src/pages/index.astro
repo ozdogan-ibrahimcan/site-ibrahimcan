@@ -6,68 +6,154 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
-<html lang="tr">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main class="container">
-			<section class="hero">
-				<h1 class="title">İbrahim Can Özdogan</h1>
-				<p class="subtitle">Automation Software & IIoT Engineer</p>
+<html lang="en">
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <section class="hero">
+        <div class="heroText">
+          <p class="kicker">Automation Software & IIoT Engineer</p>
+          <h1 class="title">I build reliable shopfloor-to-cloud systems.</h1>
+          <p class="subtitle">
+            PLC/SCADA/MES integration, industrial networking, data collection, and Python-based tooling —
+            focused on measurable production outcomes.
+          </p>
 
-				<div class="photo-wrap">
-					<img src="/images/biz.jpeg" alt="Ibrahim smiling" class="photo" loading="eager" />
-				</div>
+          <div class="ctaRow">
+            <a class="btn primary" href="/projects">View Projects</a>
+            <a class="btn" href="/blog">Read Blog</a>
+            <a class="btn ghost" href="/about">About</a>
+          </div>
 
-				<div class="intro">
-					<p>Welcome to my personal site where I share technical articles, project write-ups, and career updates. Explore below to learn more about my work and experience.</p>
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
+          <div class="metaRow">
+            <span class="pill">PLC</span>
+            <span class="pill">SCADA</span>
+            <span class="pill">MES</span>
+            <span class="pill">IIoT</span>
+            <span class="pill">Python</span>
+            <span class="pill">Node-RED</span>
+            <span class="pill">SQL</span>
+          </div>
+        </div>
+
+        <div class="heroCard">
+          <h2 class="cardTitle">What I do</h2>
+          <ul class="bullets">
+            <li>PLC ↔ SCADA/MES data flows (traceability, events, KPIs)</li>
+            <li>Industrial connectivity (PROFINET, TCP/IP, OPC UA, MQTT)</li>
+            <li>Edge & data pipelines (Node-RED, SQL, Python, APIs)</li>
+            <li>Operational tooling (monitoring, diagnostics, automation scripts)</li>
+          </ul>
+          <div class="miniLinks">
+            <a class="link" href="/projects">See case studies →</a>
+            <a class="link" href="/contact">Work with me →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="block">
+          <h2>Featured Projects</h2>
+          <p class="muted">Quick case studies you can scan in minutes.</p>
+
+          <div class="cards">
+            <a class="card" href="/projects#plc-mes">
+              <h3>PLC–MES Traceability Pipeline</h3>
+              <p>Reliable VIN/event tracking across multiple PLCs with buffering and validation.</p>
+              <p class="tag">PLC • MES • SQL • Node-RED</p>
+            </a>
+
+            <a class="card" href="/projects#scada-upgrade">
+              <h3>SCADA Upgrade & Modernization</h3>
+              <p>WinCC migration planning, RBAC, alarms/events, and cutover strategy.</p>
+              <p class="tag">WinCC • RBAC • Deployment</p>
+            </a>
+
+            <a class="card" href="/projects#industrial-network">
+              <h3>Industrial Network Troubleshooting</h3>
+              <p>Root-causing intermittent comms issues and stabilizing ring topologies.</p>
+              <p class="tag">SCALANCE • TCP/IP • Diagnostics</p>
+            </a>
+          </div>
+
+          <div class="moreRow">
+            <a class="link" href="/projects">See all projects →</a>
+          </div>
+        </div>
+
+        <div class="block">
+          <h2>Latest Writing</h2>
+          <p class="muted">Practical notes from real engineering work.</p>
+
+          <div class="cards">
+            <a class="card" href="/blog">
+              <h3>Start here: Engineering notes</h3>
+              <p>Industrial IoT, PLC comms, SCADA/MES, and Python — organized by topic.</p>
+              <p class="tag">Blog • Guides</p>
+            </a>
+
+            <a class="card" href="/blog">
+              <h3>TSEND/TRCV patterns</h3>
+              <p>How to structure robust TCP exchanges, timeouts, and recovery logic.</p>
+              <p class="tag">S7-1500 • TCP</p>
+            </a>
+
+            <a class="card" href="/blog">
+              <h3>WinCC Unified RBAC</h3>
+              <p>Role-based access control setup that scales cleanly.</p>
+              <p class="tag">HMI • Security</p>
+            </a>
+          </div>
+
+          <div class="moreRow">
+            <a class="link" href="/blog">Go to blog →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
 </html>
 
 <style>
-	.container {
-		max-width: 960px;
-		margin: 0 auto;
-		padding: 32px 16px 64px;
-	}
-	.hero {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 12px;
-	}
-	.title {
-		text-align: center;
-		font-size: clamp(28px, 5vw, 44px);
-		margin: 12px 0 0;
-	}
-	.subtitle {
-		margin: 0;
-		opacity: 0.8;
-	}
-	.photo-wrap {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		margin-top: 16px;
-	}
-	.photo {
-		width: min(820px, 96%);
-		height: auto;
-		border-radius: 18px;
-		box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
-	}
-	.intro {
-		max-width: 640px;
-		text-align: center;
-		margin-top: 24px;
-		font-size: 1.05em;
-		line-height: 1.6;
-	}
+  .container { max-width: 1080px; margin: 0 auto; padding: 32px 16px 72px; }
+
+  .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 900px){ .hero { grid-template-columns: 1fr; } }
+
+  .kicker { margin: 0; font-weight: 600; letter-spacing: .02em; opacity: .85; }
+  .title { margin: 10px 0 8px; font-size: clamp(30px, 4.2vw, 52px); line-height: 1.05; }
+  .subtitle { margin: 0; font-size: 1.05rem; opacity: .85; max-width: 62ch; }
+
+  .ctaRow { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 12px; border: 1px solid rgba(0,0,0,.12); text-decoration: none; }
+  .btn.primary { background: rgba(0,0,0,.06); }
+  .btn.ghost { background: transparent; }
+
+  .metaRow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .pill { font-size: .9rem; padding: 6px 10px; border: 1px solid rgba(0,0,0,.10); border-radius: 999px; opacity: .9; }
+
+  .heroCard { border: 1px solid rgba(0,0,0,.10); border-radius: 16px; padding: 16px; background: rgba(0,0,0,.02); }
+  .cardTitle { margin: 0 0 10px; font-size: 1.05rem; }
+  .bullets { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+  .miniLinks { display: flex; gap: 14px; margin-top: 12px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 32px; }
+  @media (max-width: 900px){ .grid { grid-template-columns: 1fr; } }
+
+  .block h2 { margin: 0 0 6px; }
+  .muted { margin: 0 0 14px; opacity: .75; }
+
+  .cards { display: grid; gap: 12px; }
+  .card { border: 1px solid rgba(0,0,0,.10); border-radius: 16px; padding: 14px; text-decoration: none; color: inherit; }
+  .card:hover { border-color: rgba(0,0,0,.18); background: rgba(0,0,0,.02); }
+  .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
+  .card p { margin: 0; opacity: .85; }
+  .tag { margin-top: 10px !important; font-size: .9rem; opacity: .75; }
+
+  .moreRow { margin-top: 12px; }
+  .link { text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.25); padding-bottom: 2px; }
 </style>
