@@ -71,14 +71,14 @@ const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
     flex-wrap: wrap;
   }
 
-  nav a {
+  .internal-links a {
     padding: 1em 0.5em;
     color: var(--black);
     border-bottom: 4px solid transparent;
     text-decoration: none;
   }
 
-  nav a.active { border-bottom-color: var(--accent); }
+  .internal-links a.active { border-bottom-color: var(--accent); }
 
   .social-links {
     display: flex;
@@ -96,6 +96,7 @@ const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
     justify-content: center;
     line-height: 1;
     text-decoration: none;
+    color: var(--black);
     opacity: 0.78;
     transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease;
   }
@@ -113,21 +114,36 @@ const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
   }
 
   .cv-btn {
-    padding: 8px 10px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: transparent;
+    color: #111827;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     line-height: 1;
-    opacity: 0.9;
-    transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease, border-color 150ms ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.95;
+    transition:
+      background-color 150ms ease,
+      color 150ms ease,
+      border-color 150ms ease,
+      transform 150ms ease,
+      box-shadow 150ms ease,
+      opacity 150ms ease;
   }
 
   .cv-btn:hover {
     opacity: 1;
+    background: rgba(15, 23, 42, 0.03);
+    border-color: rgba(148, 163, 184, 1);
     transform: translateY(-1px);
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
   }
 
   @media (max-width: 900px) {
