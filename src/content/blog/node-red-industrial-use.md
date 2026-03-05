@@ -9,7 +9,7 @@ Node-RED is a flow-based programming tool. It is often used for rapid prototypin
 
 ## What is Node-RED?
 
-Node-RED is an open-source tool developed by IBM and running on Node.js. In a browser-based editor you design flows visually using “nodes” and “wires”, so you can collect, transform, and send data with little or no code.
+Node-RED is an open-source tool developed by IBM and running on Node.js. In a browser-based editor you design flows visually using "nodes" and "wires", so you can collect, transform, and send data with little or no code.
 
 Basic components:
 
@@ -24,7 +24,7 @@ With this structure, sensor data, PLC signals, or web requests can be combined i
 In industrial settings, Node-RED is typically used in these roles:
 
 1. **Edge / gateway layer:** Collects data from PLCs, sensors, or counters on the shop floor and forwards it to upper layers (SCADA, MES, cloud) via MQTT, OPC UA, or HTTP.
-2. **Prototyping and PoC:** Provides an ideal environment to connect a new sensor, protocol, or API quickly and answer “does it work?”.
+2. **Prototyping and PoC:** Provides an ideal environment to connect a new sensor, protocol, or API quickly and answer "does it work?".
 3. **Small automations:** Lightweight logic such as simple timers, threshold checks, alarm collection, or reporting can be implemented as Node-RED flows.
 4. **Data transformation:** Acts as a bridge between different protocols (e.g. Modbus ↔ MQTT, OPC UA ↔ REST) so existing equipment can talk to new systems.
 
