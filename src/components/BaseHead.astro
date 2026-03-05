@@ -42,6 +42,10 @@ const { title, description, image = FallbackImage } = Astro.props;
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
+<meta
+	name="keywords"
+	content="Ibrahimcan Ozdogan, Automation Engineer, IIoT Engineer, PLC, SCADA, MES, industrial automation, industrial IoT, Node-RED, OPC UA, PROFINET, Python, manufacturing data"
+/>
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -56,3 +60,19 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- Structured data: Person -->
+<script type="application/ld+json">
+	{JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: 'Ibrahimcan Ozdogan',
+		jobTitle: 'Automation Software & Industrial IoT (IIoT) Engineer',
+		url: Astro.site?.toString(),
+		description: description,
+		sameAs: [
+			'https://www.linkedin.com', // TODO: add your real LinkedIn URL
+			'https://github.com', // TODO: add your real GitHub URL
+		],
+	})}
+</script>
