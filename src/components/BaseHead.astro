@@ -4,7 +4,7 @@
 import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
+import { GITHUB_URL, INSTAGRAM_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
 
 interface Props {
 	title: string;
@@ -44,7 +44,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta name="description" content={description} />
 <meta
 	name="keywords"
-	content="Ibrahimcan Ozdogan, Automation Engineer, IIoT Engineer, PLC, SCADA, MES, industrial automation, industrial IoT, Node-RED, OPC UA, PROFINET, Python, manufacturing data"
+	content="Ibrahim Can Ozdogan, İbrahim Can Özdoğan, Automation Engineer, IIoT Engineer, Automation Software Engineer, PLC, SCADA, MES, industrial automation, industrial IoT, Node-RED, OPC UA, PROFINET, Python, manufacturing data, Siemens, TIA Portal"
 />
 
 <!-- Open Graph / Facebook -->
@@ -66,13 +66,11 @@ const { title, description, image = FallbackImage } = Astro.props;
 	{JSON.stringify({
 		'@context': 'https://schema.org',
 		'@type': 'Person',
-		name: 'Ibrahimcan Ozdogan',
+		name: 'Ibrahim Can Ozdogan',
+		alternateName: 'İbrahim Can Özdoğan',
 		jobTitle: 'Automation Software & Industrial IoT (IIoT) Engineer',
 		url: Astro.site?.toString(),
 		description: description,
-		sameAs: [
-			'https://www.linkedin.com', // TODO: add your real LinkedIn URL
-			'https://github.com', // TODO: add your real GitHub URL
-		],
+		sameAs: [LINKEDIN_URL, GITHUB_URL, INSTAGRAM_URL],
 	})}
 </script>

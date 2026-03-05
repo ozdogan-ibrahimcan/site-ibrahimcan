@@ -5,15 +5,56 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { LINKEDIN_URL, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroImageUrl } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const imageURL = heroImageUrl
+	? new URL(heroImageUrl, Astro.site).toString()
+	: null;
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead title={title} description={description} />
+
+		<!-- Override og:type to article for blog posts -->
+		<meta property="og:type" content="article" />
+		<meta property="article:published_time" content={pubDate.toISOString()} />
+		{updatedDate && <meta property="article:modified_time" content={updatedDate.toISOString()} />}
+		<meta property="article:author" content="Ibrahim Can Ozdogan" />
+
+		<!-- Article structured data -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'BlogPosting',
+			headline: title,
+			description: description,
+			datePublished: pubDate.toISOString(),
+			dateModified: (updatedDate ?? pubDate).toISOString(),
+			url: canonicalURL.toString(),
+			...(imageURL ? { image: imageURL } : {}),
+			author: {
+				'@type': 'Person',
+				name: 'Ibrahim Can Ozdogan',
+				alternateName: 'İbrahim Can Özdoğan',
+				url: Astro.site?.toString(),
+				sameAs: [LINKEDIN_URL],
+			},
+			publisher: {
+				'@type': 'Person',
+				name: 'Ibrahim Can Ozdogan',
+				url: Astro.site?.toString(),
+			},
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': canonicalURL.toString(),
+			},
+		})} />
+	</head>
 		<style>
 			main {
 				width: calc(100% - 2em);
@@ -35,6 +76,35 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 				margin: auto;
 				padding: 1em;
 				color: rgb(var(--gray-dark));
+			}
+			.prose p {
+				margin-top: 0;
+				margin-bottom: 1em;
+			}
+			.prose h2 {
+				margin-top: 1.35em;
+				margin-bottom: 0.5em;
+			}
+			.prose h2:first-child {
+				margin-top: 0;
+			}
+			.prose h3 {
+				margin-top: 1em;
+				margin-bottom: 0.4em;
+			}
+			.prose ul,
+			.prose ol {
+				margin-top: 0.5em;
+				margin-bottom: 1em;
+				padding-left: 1.5em;
+			}
+			.prose li {
+				margin-bottom: 0.4em;
+			}
+			/* Sadece paragraf hemen ardından gelen listelerde boşluğu azalt (Temel bileşenler + Endüstriyel ortamlarda... sonrası) */
+			.prose p + ul,
+			.prose p + ol {
+				margin-top: 0.2em;
 			}
 			.title {
 				margin-bottom: 1em;
@@ -60,7 +130,8 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<main>
 			<article>
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					{heroImageUrl && <img src={heroImageUrl} alt="" width="1020" height="510" />}
+					{!heroImageUrl && heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
 				</div>
 				<div class="prose">
 					<div class="title">

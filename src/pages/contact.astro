@@ -1,0 +1,110 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { EMAIL, GITHUB_URL, INSTAGRAM_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} | Contact`} description="Get in touch: LinkedIn, GitHub, Instagram, and email." />
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <header class="top">
+        <h1>Contact</h1>
+        <p class="lead">Reach out via the channels below. I’m happy to connect and discuss automation, IIoT, or collaboration.</p>
+      </header>
+
+      <div class="cards-wrap">
+      <div class="cards">
+        <a class="card link-card" href={LINKEDIN_URL} target="_blank" rel="noreferrer">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95v5.66H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.26 2.37 4.26 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM3.56 20.45h3.56V9H3.56v11.45z"/></svg>
+          </span>
+          <span class="card-text">
+            <h2>LinkedIn</h2>
+            <p>Professional profile and experience.</p>
+          </span>
+        </a>
+
+        <a class="card link-card" href={GITHUB_URL} target="_blank" rel="noreferrer">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.9 3.18 9.06 7.59 10.53.55.1.75-.24.75-.53v-1.9c-3.09.68-3.74-1.31-3.74-1.31-.5-1.27-1.22-1.61-1.22-1.61-1-.68.08-.67.08-.67 1.1.08 1.68 1.13 1.68 1.13.98 1.67 2.57 1.19 3.2.91.1-.71.38-1.19.68-1.47-2.47-.28-5.06-1.23-5.06-5.49 0-1.21.43-2.2 1.13-2.98-.11-.28-.49-1.41.11-2.94 0 0 .92-.3 3.02 1.14.88-.24 1.82-.36 2.76-.36s1.88.12 2.76.36c2.1-1.44 3.02-1.14 3.02-1.14.6 1.53.22 2.66.11 2.94.7.78 1.13 1.77 1.13 2.98 0 4.27-2.6 5.21-5.08 5.49.39.34.74 1 .74 2.02v2.99c0 .29.2.64.76.53 4.41-1.47 7.58-5.63 7.58-10.53C23.25 5.48 18.27.5 12 .5z"/></svg>
+          </span>
+          <span class="card-text">
+            <h2>GitHub</h2>
+            <p>Code and open-source projects.</p>
+          </span>
+        </a>
+
+        <a class="card link-card" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </span>
+          <span class="card-text">
+            <h2>Instagram</h2>
+            <p>Personal and occasional project updates.</p>
+          </span>
+        </a>
+
+        <a class="card link-card" href={EMAIL}>
+          <span class="icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </span>
+          <span class="card-text">
+            <h2>Email</h2>
+            <p>ozdoganic@gmail.com</p>
+          </span>
+        </a>
+      </div>
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 32px 80px; }
+  .cards-wrap { max-width: 560px; }
+  @media (max-width: 600px) { .container { padding: 24px 16px 60px; } .cards-wrap { max-width: 100%; } }
+  .top { margin-bottom: 28px; }
+  .lead { margin: 10px 0 0; opacity: .85; max-width: 60ch; font-size: 1.02rem; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 600px) {
+    .cards { grid-template-columns: 1fr; }
+  }
+  .card {
+    border: 1px solid rgba(148, 163, 184, .6);
+    border-radius: 14px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    background: rgba(15, 23, 42, .01);
+    transition: border-color .18s ease, background .18s ease, transform .18s ease, box-shadow .18s ease;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card:hover {
+    border-color: rgba(59, 130, 246, .8);
+    background: rgba(37, 99, 235, .04);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, .10);
+  }
+  .icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+  .icon svg { width: 22px; height: 22px; color: var(--accent); }
+  .card-text { display: flex; flex-direction: column; gap: 1px; }
+  .card h2 { margin: 0; font-size: 1rem; color: rgb(var(--black)); }
+  .card p { margin: 0; font-size: .88rem; opacity: .78; }
+</style>

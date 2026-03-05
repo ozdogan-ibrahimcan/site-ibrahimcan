@@ -1,0 +1,140 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { projects } from '../../data/projects';
+import { SITE_TITLE } from '../../consts';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={`${SITE_TITLE} | Projects`} description="Selected engineering case studies in industrial automation and IIoT." />
+  </head>
+  <body>
+    <Header />
+    <main class="container">
+      <header class="top">
+        <p class="kicker">Case Studies</p>
+        <h1>Projects</h1>
+        <p class="lead">Real-world integration and automation work. Click any project to read the full case study.</p>
+      </header>
+
+      <div class="project-list">
+        {projects.map((p, i) => (
+          <a class="project-card" href={`/projects/${p.slug}`}>
+            <div class="card-inner">
+              <span class="index">{String(i + 1).padStart(2, '0')}</span>
+              <div class="card-body">
+                <div class="tags">
+                  {p.tags.map(t => <span class="pill">{t}</span>)}
+                </div>
+                <h2 class="card-title">{p.title}</h2>
+                <p class="card-tagline">{p.tagline}</p>
+                <div class="card-meta">
+                  <span>{p.role}</span>
+                  <span class="sep">·</span>
+                  <span>{p.duration}</span>
+                </div>
+              </div>
+              <span class="arrow" aria-hidden="true">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  .container { max-width: 860px; margin: 0 auto; padding: 48px 32px 96px; }
+  @media (max-width: 600px) { .container { padding: 24px 16px 64px; } }
+
+  .top { margin-bottom: 40px; }
+  .kicker {
+    margin: 0 0 8px;
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    opacity: .6;
+  }
+  .top h1 { margin: 0 0 10px; }
+  .lead { margin: 0; font-size: 1.02rem; opacity: .8; max-width: 60ch; }
+
+  .project-list { display: grid; gap: 12px; }
+
+  .project-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid rgba(148, 163, 184, .5);
+    border-radius: 18px;
+    background: rgba(15, 23, 42, .01);
+    transition: border-color .18s ease, background .18s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .project-card:hover {
+    border-color: rgba(35, 55, 255, .45);
+    background: rgba(35, 55, 255, .03);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, .10);
+  }
+
+  .card-inner {
+    display: grid;
+    grid-template-columns: 36px 1fr 28px;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 24px;
+  }
+
+  .index {
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    opacity: .3;
+    font-variant-numeric: tabular-nums;
+    align-self: start;
+    padding-top: 2px;
+  }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .pill {
+    font-size: .76rem;
+    padding: 3px 9px;
+    border: 1px solid rgba(148, 163, 184, .5);
+    border-radius: 999px;
+    opacity: .85;
+    background: rgba(15, 23, 42, .02);
+  }
+
+  .card-title { margin: 0 0 6px; font-size: 1.18rem; line-height: 1.2; }
+  .card-tagline { margin: 0 0 12px; opacity: .78; font-size: .96rem; line-height: 1.5; }
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .84rem;
+    opacity: .6;
+  }
+  .sep { opacity: .5; }
+
+  .arrow {
+    font-size: 1.1rem;
+    opacity: .35;
+    transition: opacity .18s ease, transform .18s ease;
+    justify-self: end;
+    align-self: center;
+  }
+  .project-card:hover .arrow { opacity: .8; transform: translateX(3px); }
+
+  @media (max-width: 600px) {
+    .card-inner {
+      grid-template-columns: 28px 1fr 20px;
+      gap: 12px;
+      padding: 16px;
+    }
+    .card-title { font-size: 1.05rem; }
+  }
+</style>

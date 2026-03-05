@@ -1,8 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const latestPosts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 ---
 
 <!doctype html>
@@ -59,19 +64,19 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
           <p class="muted">Quick case studies you can scan in minutes.</p>
 
           <div class="cards">
-            <a class="card" href="/projects#plc-mes">
+            <a class="card" href="/projects/plc-mes-traceability">
               <h3>PLC–MES Traceability Pipeline</h3>
               <p>Reliable VIN/event tracking across multiple PLCs with buffering and validation.</p>
               <p class="tag">PLC • MES • SQL • Node-RED</p>
             </a>
 
-            <a class="card" href="/projects#scada-upgrade">
+            <a class="card" href="/projects/scada-upgrade-modernization">
               <h3>SCADA Upgrade & Modernization</h3>
               <p>WinCC migration planning, RBAC, alarms/events, and cutover strategy.</p>
               <p class="tag">WinCC • RBAC • Deployment</p>
             </a>
 
-            <a class="card" href="/projects#industrial-network">
+            <a class="card" href="/projects/industrial-network-troubleshooting">
               <h3>Industrial Network Troubleshooting</h3>
               <p>Root-causing intermittent comms issues and stabilizing ring topologies.</p>
               <p class="tag">SCALANCE • TCP/IP • Diagnostics</p>
@@ -88,23 +93,13 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
           <p class="muted">Practical notes from real engineering work.</p>
 
           <div class="cards">
-            <a class="card" href="/blog">
-              <h3>Start here: Engineering notes</h3>
-              <p>Industrial IoT, PLC comms, SCADA/MES, and Python — organized by topic.</p>
-              <p class="tag">Blog • Guides</p>
-            </a>
-
-            <a class="card" href="/blog">
-              <h3>TSEND/TRCV patterns</h3>
-              <p>How to structure robust TCP exchanges, timeouts, and recovery logic.</p>
-              <p class="tag">S7-1500 • TCP</p>
-            </a>
-
-            <a class="card" href="/blog">
-              <h3>WinCC Unified RBAC</h3>
-              <p>Role-based access control setup that scales cleanly.</p>
-              <p class="tag">HMI • Security</p>
-            </a>
+            {latestPosts.map((post) => (
+              <a class="card" href={`/blog/${post.id}/`}>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <p class="tag">Blog</p>
+              </a>
+            ))}
           </div>
 
           <div class="moreRow">
@@ -118,7 +113,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 </html>
 
 <style>
-  .container { max-width: 1120px; margin: 0 auto; padding: 40px 20px 80px; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 32px 80px; }
+  @media (max-width: 600px) { .container { padding: 24px 16px 64px; } }
 
   .hero {
     display: grid;

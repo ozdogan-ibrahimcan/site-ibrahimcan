@@ -1,11 +1,6 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { CV_URL, EMAIL, GITHUB_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
-
-const LINKEDIN_URL = "https://www.linkedin.com/in/ibrahimcanozdogan/";
-const GITHUB_URL = "https://github.com/ozdogan-ibrahimcan";
-const EMAIL = "mailto:ozdoganic@gmail.com";
-const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
 ---
 <header>
   <nav>
@@ -16,6 +11,7 @@ const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
       <HeaderLink href="/projects">Projects</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
+      <HeaderLink href="/contact">Contact</HeaderLink>
     </div>
 
     <div class="social-links">
@@ -72,7 +68,7 @@ const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
   }
 
   .internal-links a {
-    padding: 1em 0.5em;
+    padding: .55em 0.5em;
     color: var(--black);
     border-bottom: 4px solid transparent;
     text-decoration: none;
@@ -148,5 +144,17 @@ const CV_URL = "/ibrahimcan_ozdogan_CV.pdf";
 
   @media (max-width: 900px) {
     .social-links { display: none; }
+  }
+
+  @media (max-width: 480px) {
+    h2 { font-size: .85rem; }
+    .internal-links a { padding: .45em .32em; font-size: .83rem; }
+  }
+
+  @media (max-width: 390px) {
+    nav { flex-wrap: wrap; row-gap: 0; }
+    h2 { width: 100%; padding: 8px 0 4px; border-bottom: 1px solid rgba(0,0,0,.06); }
+    .internal-links { width: 100%; justify-content: space-between; padding-bottom: 4px; }
+    .internal-links a { padding: .4em .2em; font-size: .8rem; }
   }
 </style>
