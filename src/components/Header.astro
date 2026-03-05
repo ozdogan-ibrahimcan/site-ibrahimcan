@@ -110,36 +110,29 @@ import HeaderLink from './HeaderLink.astro';
   }
 
   .cv-btn {
-    padding: 6px 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.7);
+    padding: 6px;
+    border: none;
     background: transparent;
-    color: #111827;
-    text-decoration: none;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    line-height: 1;
+    border-radius: var(--radius-sm, 10px);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.95;
-    transition:
-      background-color 150ms ease,
-      color 150ms ease,
-      border-color 150ms ease,
-      transform 150ms ease,
-      box-shadow 150ms ease,
-      opacity 150ms ease;
+    line-height: 1;
+    text-decoration: none;
+    color: rgb(var(--black));
+    opacity: 0.78;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    min-width: 32px;
+    transition: opacity 150ms ease, transform 150ms ease, background-color 150ms ease;
   }
 
   .cv-btn:hover {
     opacity: 1;
-    background: rgba(15, 23, 42, 0.03);
-    border-color: rgba(148, 163, 184, 1);
     transform: translateY(-1px);
-    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.12);
+    background: rgba(0, 0, 0, 0.04);
   }
 
   @media (max-width: 900px) {

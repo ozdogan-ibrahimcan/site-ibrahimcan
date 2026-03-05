@@ -16,10 +16,17 @@ import { SITE_TITLE } from '../consts';
 
     <main class="container">
       <header class="top">
-        <h1>About</h1>
+        <p class="kicker">About</p>
+        <h1>Ibrahim Can Ozdogan</h1>
         <p class="lead">
-          Automation Software & IIoT Engineer focused on industrial digitalization — building reliable data
-          systems from PLC/SCADA to MES and higher-level platforms.
+          Automation Software & IIoT Engineer at Siemens Turkey — building reliable data pipelines from
+          PLC/SCADA to MES and cloud. M.Sc. Computer Engineering student at ITU, B.Sc. Electrical Engineering
+          graduate (GPA 3.81, top of class).
+        </p>
+        <p class="lead" style="margin-top: 10px;">
+          I work on the intersection of industrial automation and software — turning shopfloor signals into
+          structured, actionable data. My focus areas: production traceability, SCADA modernization,
+          industrial networking, and edge data pipelines.
         </p>
       </header>
 
@@ -96,42 +103,44 @@ import { SITE_TITLE } from '../consts';
 </html>
 
 <style>
-  .container { max-width: 960px; margin: 0 auto; padding: 40px 32px 80px; }
-  @media (max-width: 600px) { .container { padding: 24px 16px 60px; } }
-  .top { margin-bottom: 24px; }
-  .lead { margin: 10px 0 0; opacity: .85; max-width: 70ch; font-size: 1.02rem; }
+  .container { max-width: 960px; margin: 0 auto; padding: var(--spacing-page); }
+  @media (max-width: 600px) { .container { padding: var(--spacing-page-mobile); } }
 
-  .section { margin-top: 28px; }
-  .section h2 { margin: 0 0 12px; font-size: 1.25rem; color: rgb(var(--black)); }
+  .top { margin-bottom: 28px; }
+  .kicker { margin: 0 0 8px; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+  .lead { margin: 8px 0 0; color: var(--text-muted); max-width: 68ch; font-size: 1rem; line-height: 1.65; }
+
+  .section { margin-top: 32px; }
+  .section h2 { margin: 0 0 12px; font-size: 1.18rem; font-weight: 700; color: rgb(var(--black)); }
   .card {
-    border: 1px solid rgba(148, 163, 184, .6);
-    border-radius: 18px;
-    padding: 16px;
-    margin-top: 12px;
-    background: rgba(15, 23, 42, .01);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    padding: 16px 18px;
+    margin-top: 10px;
+    background: var(--card-bg);
     transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
   }
   .card:hover {
-    border-color: rgba(59, 130, 246, .5);
-    background: rgba(37, 99, 235, .03);
-    box-shadow: 0 14px 32px rgba(15, 23, 42, .08);
+    border-color: var(--border-hover);
+    background: var(--card-bg-hover);
+    box-shadow: var(--card-shadow-hover);
   }
-  .meta { margin: 6px 0 10px; opacity: .75; font-size: .95rem; }
-  .muted { opacity: .85; margin: 0; }
+  .meta { margin: 4px 0 10px; color: var(--text-muted); font-size: .9rem; }
+  .muted { color: var(--text-muted); margin: 0; font-size: .94rem; }
 
-  ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; }
+  ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; font-size: .94rem; }
 
-  .skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .skills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
   .pill {
-    font-size: .86rem;
-    padding: 6px 10px;
-    border: 1px solid rgba(148, 163, 184, .5);
-    border-radius: 999px;
-    opacity: .9;
-    background: rgba(15, 23, 42, .02);
+    font-size: .8rem;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-btn);
+    color: var(--text-muted);
+    background: var(--card-bg);
   }
 
   .ctaRow { margin-top: 28px; }
-  .link { text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, .25); padding-bottom: 2px; }
+  .link { text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, .2); padding-bottom: 2px; font-size: .92rem; }
   .link.accent { color: var(--accent); border-bottom-color: var(--accent); }
 </style>
