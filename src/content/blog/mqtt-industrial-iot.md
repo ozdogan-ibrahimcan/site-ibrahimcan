@@ -2,6 +2,8 @@
 title: "MQTT in Industrial IoT: Patterns, Pitfalls, and Best Practices"
 description: "A practical look at MQTT architecture for industrial data — broker setup, topic design, QoS levels, retained messages, and the mistakes that cause data loss in production."
 pubDate: "2026-01-15"
+category: "IIoT & Data Pipelines"
+whoIsItFor: "Automation engineers / Embedded / IIoT"
 ---
 
 MQTT is everywhere in industrial IoT. It is lightweight, works well over unreliable networks, and is supported by virtually every platform from microcontrollers to cloud services. But "lightweight" does not mean simple — a poorly designed MQTT architecture causes data loss, security holes, and systems that are hard to debug. This post covers the patterns that work and the pitfalls to avoid.

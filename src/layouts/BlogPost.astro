@@ -9,7 +9,7 @@ import { LINKEDIN_URL, SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, heroImageUrl } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, heroImageUrl, whoIsItFor } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const imageURL = heroImageUrl
@@ -119,6 +119,12 @@ const imageURL = heroImageUrl
 				margin-bottom: 0.5em;
 				color: rgb(var(--gray));
 			}
+			.whoIsItFor {
+				margin: 0.5em 0 0;
+				font-size: 0.9rem;
+				color: rgb(var(--gray));
+				font-style: italic;
+			}
 			.last-updated-on {
 				font-style: italic;
 			}
@@ -146,6 +152,7 @@ const imageURL = heroImageUrl
 							}
 						</div>
 						<h1>{title}</h1>
+						{whoIsItFor && <p class="whoIsItFor">For: {whoIsItFor}</p>}
 						<hr />
 					</div>
 					<slot />

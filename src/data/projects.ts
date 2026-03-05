@@ -9,6 +9,13 @@ export interface ProjectSection {
   bullets?: string[];
 }
 
+/** One-line summaries for homepage case-study cards (Problem → Approach → Outcome) */
+export interface ProjectCardSummary {
+  problem: string;
+  approach: string;
+  outcome: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -18,6 +25,8 @@ export interface Project {
   duration: string;
   highlights: ProjectHighlight[];
   sections: ProjectSection[];
+  /** Optional: used on homepage Featured Projects for case-study style cards */
+  cardSummary?: ProjectCardSummary;
 }
 
 export const projects: Project[] = [
@@ -62,6 +71,11 @@ export const projects: Project[] = [
           'After go-live, traceability coverage reached 100 % of in-scope stations. The monthly audit that previously took two days to reconcile was eliminated. Zero data-loss incidents were recorded in the first three months of production operation. The buffered architecture also proved its value during a planned MES maintenance window — roughly 4 000 events queued cleanly and flushed in order once the MES came back online.',
       },
     ],
+    cardSummary: {
+      problem: 'Traceability gaps and audit failures from manual CSV/DB inserts; PLC layer had no guaranteed delivery.',
+      approach: 'Node-RED edge middleware with SQLite buffer, validation layer, and Python delivery service with retries.',
+      outcome: '100% traceability, zero data loss in 3 months; audit reconciliation eliminated.',
+    },
   },
   {
     slug: 'scada-upgrade-modernization',
@@ -105,6 +119,11 @@ export const projects: Project[] = [
           'The cutover completed in 88 minutes with no production impact. Post-migration alarm rate dropped from ~300 to ~120 alarms/hour during steady-state operation. The first external compliance audit passed with zero major findings on the RBAC and alarm management chapters. Maintenance teams reported significantly faster fault diagnosis due to cleaner alarm grouping and consistent screen layouts.',
       },
     ],
+    cardSummary: {
+      problem: 'Legacy WinCC with inconsistent UX, flat permissions, and ~300 alarms/hour with no documented cutover plan.',
+      approach: 'Screen standardization, RBAC design, alarm rationalization, and shadow-mode cutover with run-in period.',
+      outcome: 'Cutover in 88 min; alarm rate down 60%; compliance passed with zero major findings; faster fault diagnosis.',
+    },
   },
   {
     slug: 'industrial-network-troubleshooting',
@@ -152,5 +171,10 @@ export const projects: Project[] = [
           'After all three fixes were applied, the press shop ran for 60 days without a single PROFINET fault. The SNMP dashboard developed during the investigation was kept in place as a permanent monitoring layer, feeding alerts to the maintenance team before errors escalate to line stops.\n\nThe case also led to the site creating a standard PROFINET commissioning checklist — covering cable routing, MRP role assignment, and speed/duplex configuration — that is now applied to all new installations.',
       },
     ],
+    cardSummary: {
+      problem: 'Intermittent comms drops in PROFINET ring causing daily 3–15 min line stops; root cause unknown.',
+      approach: 'SCALANCE diagnostics, PLC buffer exports, Wireshark baseline; cable reroute, MRP fix, fixed speed/duplex.',
+      outcome: 'Zero faults in 60 days; SNMP monitoring kept; site-wide PROFINET commissioning checklist adopted.',
+    },
   },
 ];

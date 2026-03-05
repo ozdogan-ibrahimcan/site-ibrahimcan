@@ -4,10 +4,13 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { projects } from '../data/projects';
 
 const latestPosts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
+
+const featuredProjects = projects.filter((p) => p.cardSummary).slice(0, 3);
 ---
 
 <!doctype html>
@@ -20,40 +23,41 @@ const latestPosts = (await getCollection('blog'))
     <main class="container">
       <section class="hero">
         <div class="heroText">
-          <p class="kicker">Automation Software & IIoT Engineer</p>
-          <h1 class="title">I build reliable shopfloor-to-cloud systems.</h1>
+          <p class="kicker">Automation Software &amp; IIoT Engineer<br />Siemens · Istanbul</p>
+          <h1 class="title">I build PLC-to-cloud systems that don't break in production.</h1>
           <p class="subtitle">
-            PLC/SCADA/MES integration, industrial networking, data collection, and Python-based tooling —
-            focused on measurable production outcomes.
+            PLC/SCADA/MES integration, industrial networking, and Python tooling —
+            focused on traceability, uptime, and measurable KPIs.
           </p>
 
           <div class="ctaRow">
             <a class="btn primary" href="/projects">View Projects</a>
             <a class="btn" href="/blog">Read Blog</a>
-            <a class="btn ghost" href="/about">About</a>
           </div>
 
           <div class="metaRow">
-            <span class="pill">PLC</span>
-            <span class="pill">SCADA</span>
-            <span class="pill">MES</span>
-            <span class="pill">IIoT</span>
-            <span class="pill">Python</span>
+            <span class="pill">S7-1500</span>
+            <span class="pill">WinCC</span>
             <span class="pill">Node-RED</span>
+            <span class="pill">OPC UA</span>
+            <span class="pill">MQTT</span>
             <span class="pill">SQL</span>
+            <span class="pill">Python</span>
           </div>
         </div>
 
         <div class="heroCard">
-          <h2 class="cardTitle">What I do</h2>
+          <h2 class="cardTitle">What I deliver</h2>
           <ul class="bullets">
-            <li>PLC ↔ SCADA/MES data flows (traceability, events, KPIs)</li>
-            <li>Industrial connectivity (PROFINET, TCP/IP, OPC UA, MQTT)</li>
-            <li>Edge & data pipelines (Node-RED, SQL, Python, APIs)</li>
-            <li>Operational tooling (monitoring, diagnostics, automation scripts)</li>
+            <li>Traceability pipelines (VIN/event tracking, buffering, validation)</li>
+            <li>SCADA modernization (WinCC migration, RBAC, alarms/events)</li>
+            <li>Industrial connectivity (PROFINET/TCP, OPC UA, MQTT)</li>
+            <li>Operational tooling (diagnostics, scripts, data quality checks)</li>
           </ul>
+          <p class="cardNote">I document patterns and share reusable templates in the blog.</p>
           <div class="miniLinks">
-            <a class="link" href="/projects">See case studies →</a>
+            <a class="link" href="/projects">See projects →</a>
+            <a class="link" href="/blog">Read blog →</a>
           </div>
         </div>
       </section>
@@ -61,26 +65,22 @@ const latestPosts = (await getCollection('blog'))
       <section class="grid">
         <div class="block">
           <h2>Featured Projects</h2>
-          <p class="muted">Quick case studies you can scan in minutes.</p>
+          <p class="muted">Case studies: problem → approach → outcome.</p>
 
           <div class="cards">
-            <a class="card" href="/projects/plc-mes-traceability">
-              <h3>PLC–MES Traceability Pipeline</h3>
-              <p>Reliable VIN/event tracking across multiple PLCs with buffering and validation.</p>
-              <p class="tag">PLC • MES • SQL • Node-RED</p>
-            </a>
-
-            <a class="card" href="/projects/scada-upgrade-modernization">
-              <h3>SCADA Upgrade & Modernization</h3>
-              <p>WinCC migration planning, RBAC, alarms/events, and cutover strategy.</p>
-              <p class="tag">WinCC • RBAC • Deployment</p>
-            </a>
-
-            <a class="card" href="/projects/industrial-network-troubleshooting">
-              <h3>Industrial Network Troubleshooting</h3>
-              <p>Root-causing intermittent comms issues and stabilizing ring topologies.</p>
-              <p class="tag">SCALANCE • TCP/IP • Diagnostics</p>
-            </a>
+            {featuredProjects.map((p) => (
+              <a class="card card-case-study" href={`/projects/${p.slug}`}>
+                <h3>{p.title}</h3>
+                {p.cardSummary && (
+                  <div class="caseStudy">
+                    <p class="caseStudyRow"><span class="caseStudyLabel">Problem:</span> {p.cardSummary.problem}</p>
+                    <p class="caseStudyRow"><span class="caseStudyLabel">Approach:</span> {p.cardSummary.approach}</p>
+                    <p class="caseStudyRow"><span class="caseStudyLabel">Outcome:</span> {p.cardSummary.outcome}</p>
+                  </div>
+                )}
+                <p class="tag">{p.tags.slice(0, 4).join(' • ')}</p>
+              </a>
+            ))}
           </div>
 
           <div class="moreRow">
@@ -124,7 +124,7 @@ const latestPosts = (await getCollection('blog'))
   }
   @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 24px; } }
 
-  .kicker { margin: 0; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .78rem; color: var(--text-muted); }
+  .kicker { margin: 0; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: .9rem; color: var(--text-muted); }
   .title { margin: 12px 0 10px; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -.02em; }
   .subtitle { margin: 0; font-size: 1rem; color: var(--text-muted); max-width: 58ch; line-height: 1.6; }
 
@@ -174,7 +174,8 @@ const latestPosts = (await getCollection('blog'))
   }
   .cardTitle { margin: 0 0 12px; font-size: .75rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
   .bullets { margin: 0; padding-left: 16px; display: grid; gap: 8px; font-size: .94rem; }
-  .miniLinks { display: flex; gap: 14px; margin-top: 14px; }
+  .cardNote { margin: 12px 0 0; font-size: .85rem; color: var(--text-muted); line-height: 1.45; }
+  .miniLinks { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
 
   /* Lower grid */
   .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 44px; }
@@ -202,6 +203,10 @@ const latestPosts = (await getCollection('blog'))
   .card h3 { margin: 0 0 5px; font-size: 1.02rem; font-weight: 600; }
   .card p { margin: 0; font-size: .92rem; color: var(--text-muted); }
   .tag { margin-top: 10px !important; font-size: .84rem; }
+
+  .card-case-study .caseStudy { margin: 10px 0 0; display: grid; gap: 6px; }
+  .card-case-study .caseStudyRow { margin: 0; font-size: .92rem; line-height: 1.5; color: var(--text-muted); }
+  .card-case-study .caseStudyLabel { font-size: .8rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--text-muted); margin-right: 6px; }
 
   .moreRow { margin-top: 12px; }
   .link { text-decoration: none; border-bottom: 1px solid rgba(0,0,0,.2); padding-bottom: 2px; font-size: .92rem; }

@@ -3,6 +3,8 @@ title: "What is Node-RED? Node-RED in Industrial Use"
 description: "What is Node-RED, how does it work, and why is it used in industrial automation and IIoT projects? A short introduction and use cases."
 pubDate: "2026-03-05"
 heroImageUrl: "/images/node-red-hero.jpg"
+category: "IIoT & Data Pipelines"
+whoIsItFor: "Automation engineers / OT / Integration"
 ---
 
 Node-RED is a flow-based programming tool. It is often used for rapid prototyping and connectivity in IoT and industrial data integration projects. This post summarises what Node-RED is, how it works, and where it is used in industry.

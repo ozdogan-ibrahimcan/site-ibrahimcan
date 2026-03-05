@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { SITE_TITLE } from '../consts';
+import { CV_URL, SITE_TITLE } from '../consts';
 ---
 
 <!doctype html>
@@ -18,84 +18,51 @@ import { SITE_TITLE } from '../consts';
       <header class="top">
         <p class="kicker">About</p>
         <h1>Ibrahim Can Ozdogan</h1>
-        <p class="lead">
-          Automation Software & IIoT Engineer at Siemens Turkey — building reliable data pipelines from
-          PLC/SCADA to MES and cloud. M.Sc. Computer Engineering student at ITU, B.Sc. Electrical Engineering
-          graduate (GPA 3.81, top of class).
+        <p class="story">
+          I'm an Automation Software & IIoT Engineer at Siemens, focused on turning shopfloor signals into reliable production data.
         </p>
-        <p class="lead" style="margin-top: 10px;">
-          I work on the intersection of industrial automation and software — turning shopfloor signals into
-          structured, actionable data. My focus areas: production traceability, SCADA modernization,
-          industrial networking, and edge data pipelines.
+        <p class="story">
+          I work on PLC/SCADA/MES integration, industrial networking, and edge data pipelines — with an emphasis on traceability, uptime, and measurable KPIs.
         </p>
       </header>
 
       <section class="section">
-        <h2>Professional Experience</h2>
+        <h2>Experience</h2>
 
         <div class="card">
-          <h3>Siemens Turkey — Automation Software & IoT Engineer</h3>
+          <h3>Siemens — Automation & digitalization</h3>
           <p class="meta">Jul 2022 – Present</p>
           <ul>
-            <li>Designed and delivered production data integration systems between PLCs, SCADA platforms, and MES environments.</li>
-            <li>Developed Node-RED architectures, SQL-based data layers, and backend logic for scalable real-time communication.</li>
-            <li>Built control APIs and automation workflows in complex robotic welding environments.</li>
-            <li>Implemented predictive maintenance systems using Grafana dashboards, Node-RED flows, and Linux-based IoT gateways.</li>
+            <li>Production data integration between PLCs, SCADA, and MES; Node-RED and SQL-based pipelines.</li>
+            <li>Control APIs and automation workflows in robotic welding; predictive maintenance with Grafana and edge gateways.</li>
           </ul>
         </div>
 
         <div class="card">
-          <h3>Akerasoft — Embedded Systems Intern</h3>
+          <h3>Akerasoft — Embedded systems</h3>
           <p class="meta">Oct 2021 – Apr 2022</p>
           <ul>
-            <li>Worked on microcontroller-based firmware and hardware development (Embedded C/C++).</li>
-            <li>Assisted with schematic design and PCB layout using KiCad; supported device-level debugging and documentation.</li>
+            <li>Embedded C/C++ firmware; KiCad schematic and PCB; device-level debugging and documentation.</li>
           </ul>
         </div>
       </section>
 
       <section class="section">
         <h2>Education</h2>
-
-        <div class="card">
-          <h3>Istanbul Technical University — M.Sc., Computer Engineering</h3>
-          <p class="meta">Sep 2024 – Present</p>
-          <p class="muted">
-            Interests: IoT architectures, smart manufacturing systems, industrial automation software, edge computing.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Istanbul Technical University — B.Sc., Electrical Engineering</h3>
-          <p class="meta">Sep 2018 – Jun 2023</p>
-          <p class="muted">
-            Graduated top of class (GPA 3.81/4.00). Focused on power electronics, embedded systems, PLC/SCADA technologies,
-            and industrial automation.
-          </p>
-        </div>
+        <ul class="eduList">
+          <li><strong>Istanbul Technical University</strong> — M.Sc. Computer Engineering (in progress)</li>
+          <li><strong>Istanbul Technical University</strong> — B.Sc. Electrical Engineering (GPA 3.81, top of class)</li>
+        </ul>
       </section>
 
       <section class="section">
-        <h2>Core Skills</h2>
-        <div class="skills">
-          <span class="pill">TIA Portal (S7-1500)</span>
-          <span class="pill">SCL</span>
-          <span class="pill">WinCC</span>
-          <span class="pill">OPC UA</span>
-          <span class="pill">PROFINET</span>
-          <span class="pill">Node-RED</span>
-          <span class="pill">MQTT</span>
-          <span class="pill">Python</span>
-          <span class="pill">SQL</span>
-          <span class="pill">Linux</span>
-          <span class="pill">Docker</span>
-          <span class="pill">Git</span>
-        </div>
+        <h2>Certifications</h2>
+        <p class="certs">CCNA, S7-1500, SCL, First Aid</p>
       </section>
 
-      <div class="ctaRow">
-        <a class="link accent" href="/contact">Get in touch →</a>
-      </div>
+      <p class="cvLink">
+        <a class="link" href={CV_URL} target="_blank" rel="noreferrer">Download Resume (PDF)</a>
+      </p>
     </main>
 
     <Footer />
@@ -108,7 +75,7 @@ import { SITE_TITLE } from '../consts';
 
   .top { margin-bottom: 28px; }
   .kicker { margin: 0 0 8px; font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
-  .lead { margin: 8px 0 0; color: var(--text-muted); max-width: 68ch; font-size: 1rem; line-height: 1.65; }
+  .story { margin: 10px 0 0; color: var(--text-muted); max-width: 68ch; font-size: 1rem; line-height: 1.65; }
 
   .section { margin-top: 32px; }
   .section h2 { margin: 0 0 12px; font-size: 1.18rem; font-weight: 700; color: rgb(var(--black)); }
@@ -130,17 +97,9 @@ import { SITE_TITLE } from '../consts';
 
   ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; font-size: .94rem; }
 
-  .skills { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
-  .pill {
-    font-size: .8rem;
-    padding: 4px 10px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-btn);
-    color: var(--text-muted);
-    background: var(--card-bg);
-  }
-
-  .ctaRow { margin-top: 28px; }
+  .eduList { list-style: none; padding-left: 0; }
+  .eduList li { margin-bottom: 8px; font-size: .94rem; color: var(--text-muted); }
+  .certs { margin: 0; font-size: .94rem; color: var(--text-muted); }
+  .cvLink { margin-top: 24px; }
   .link { text-decoration: none; border-bottom: 1px solid rgba(0, 0, 0, .2); padding-bottom: 2px; font-size: .92rem; }
-  .link.accent { color: var(--accent); border-bottom-color: var(--accent); }
 </style>

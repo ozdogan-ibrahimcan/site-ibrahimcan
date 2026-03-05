@@ -7,9 +7,11 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('blog')).sort(
+const allPosts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const startHerePost = allPosts.find((p) => p.data.startHere);
+const latestPosts = allPosts.filter((p) => p.id !== startHerePost?.id).slice(0, 6);
 ---
 
 <!doctype html>
@@ -20,98 +22,131 @@ const posts = (await getCollection('blog')).sort(
 			main {
 				width: 960px;
 				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: var(--spacing-page);
 			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
+			@media (max-width: 600px) {
+				main { padding: var(--spacing-page-mobile); }
+			}
+
+			.startHere {
+				display: block;
+				text-decoration: none;
+				border: 1px solid var(--border);
+				border-radius: var(--radius-card);
+				padding: 24px;
+				margin-bottom: 28px;
+				background: var(--card-bg);
+				transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+			}
+			.startHere:hover {
+				border-color: var(--border-hover);
+				background: var(--card-bg-hover);
+				box-shadow: var(--card-shadow-hover);
+			}
+			.startHere .label {
+				font-size: .7rem;
+				font-weight: 700;
+				letter-spacing: .1em;
+				text-transform: uppercase;
+				color: var(--accent);
+				margin-bottom: 6px;
+			}
+			.startHere .title {
+				margin: 0 0 6px;
+				font-size: 1.5rem;
+				color: rgb(var(--black));
+				line-height: 1.2;
+			}
+			.startHere .description {
+				margin: 0;
+				font-size: .94rem;
+				color: var(--text-muted);
+				line-height: 1.5;
+			}
+
+			.sectionTitle {
+				margin: 0 0 14px;
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: rgb(var(--black));
+			}
+			.postGrid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+				list-style: none;
 				margin: 0;
 				padding: 0;
 			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
 			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
+				.postGrid { grid-template-columns: 1fr; }
+			}
+			.postCard {
+				display: block;
+				text-decoration: none;
+				border: 1px solid var(--border);
+				border-radius: var(--radius-card);
+				padding: 16px;
+				background: var(--card-bg);
+				transition: border-color .18s ease, background .18s ease, box-shadow .18s ease;
+			}
+			.postCard:hover {
+				border-color: var(--border-hover);
+				background: var(--card-bg-hover);
+				box-shadow: var(--card-shadow-hover);
+			}
+			.postCard .title {
+				margin: 0 0 6px;
+				font-size: 1.02rem;
+				font-weight: 600;
+				color: rgb(var(--black));
+				line-height: 1.25;
+			}
+			.postCard .date {
+				margin: 0;
+				font-size: .85rem;
+				color: var(--text-muted);
+			}
+			.postCard .category {
+				margin: 8px 0 0;
+				font-size: .75rem;
+				font-weight: 600;
+				letter-spacing: .04em;
+				color: var(--text-muted);
+			}
+			.postCard .whoIsItFor {
+				margin: 4px 0 0;
+				font-size: .8rem;
+				color: var(--text-muted);
+				font-style: italic;
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImageUrl && (
-										<img src={post.data.heroImageUrl} alt="" width="720" height="360" />
-									)}
-									{!post.data.heroImageUrl && post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+			{startHerePost && (
+				<a class="startHere" href={`/blog/${startHerePost.id}/`}>
+					<div class="label">Start here</div>
+					<h2 class="title">{startHerePost.data.title}</h2>
+					<p class="description">{startHerePost.data.description}</p>
+				</a>
+			)}
+
+			<h2 class="sectionTitle">Latest</h2>
+			<ul class="postGrid">
+				{latestPosts.map((post) => (
+					<li>
+						<a class="postCard" href={`/blog/${post.id}/`}>
+							<h3 class="title">{post.data.title}</h3>
+							<p class="date"><FormattedDate date={post.data.pubDate} /></p>
+							{post.data.category && <p class="category">{post.data.category}</p>}
+							{post.data.whoIsItFor && <p class="whoIsItFor">For: {post.data.whoIsItFor}</p>}
+						</a>
+					</li>
+				))}
+			</ul>
 		</main>
 		<Footer />
 	</body>
